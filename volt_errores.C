@@ -43,9 +43,6 @@ void volt_errores()
 	
 	gr->Draw("AP");
 	
-	c1->SaveAs("tasa_vs_voltaje2.png");
-	c1->SaveAs("tasa_vs_voltaje2.pdf");
-	
 	TF1 *fitFunc = new TF1("fitFunc", "[0]/(1.0 + exp(-(x-[1])/[2]))", 350, 950);
 	fitFunc->SetParNames("N_{max}", "V_{0}", "#Delta V");
 	
@@ -59,4 +56,7 @@ void volt_errores()
 	leg->AddEntry(gr, "Datos experimentales (#sigma = #sqrt{N})", "pe");
 	leg->AddEntry(fitFunc, "Ajuste Sigmoide (Modelo PMT)", "l");
 	leg->Draw();
+	
+	c1->SaveAs("tasa_vs_voltaje3.png");
+	c1->SaveAs("tasa_vs_voltaje3.pdf");
 }
