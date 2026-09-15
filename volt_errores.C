@@ -43,20 +43,20 @@ void volt_errores()
 	
 	gr->Draw("AP");
 	
-	c1->SaveAs("tasa_vs_voltaje.png");
-	c1->SaveAs("tasa_vs_voltaje.pdf");
+	c1->SaveAs("tasa_vs_voltaje2.png");
+	c1->SaveAs("tasa_vs_voltaje2.pdf");
 	
-	//TF1 *fitFunc = new TF1("fitFunc", "[0]/(1.0 + exp(-(x-[1])/[2]))", 350, 950);
-	//fitFunc->SetParNames("N_{max}", "V_{0}", "#Delta V");
+	TF1 *fitFunc = new TF1("fitFunc", "[0]/(1.0 + exp(-(x-[1])/[2]))", 350, 950);
+	fitFunc->SetParNames("N_{max}", "V_{0}", "#Delta V");
 	
-	//fitFunc->SetParameters(80.0, 650.0, 15.0);
-	//fitFunc->SetLineColor(kRed+1);
-	//fitFunc->SetLineWidth(3);
+	fitFunc->SetParameters(80.0, 650.0, 15.0);
+	fitFunc->SetLineColor(kRed+1);
+	fitFunc->SetLineWidth(3);
 	
-	//gr->Fit("fitFunc", "R");
+	gr->Fit("fitFunc", "R");
 	
-	//TLegend *leg = new TLegend(0.15, 0.75, 0.45, 0.88);
-	//leg->AddEntry(gr, "Datos experimentales (#sigma = #sqrt{N})", "pe");
-	//leg->AddEntry(fitFunc, "Ajuste Sigmoide (Modelo PMT)", "l");
-	//leg->Draw();
+	TLegend *leg = new TLegend(0.15, 0.75, 0.45, 0.88);
+	leg->AddEntry(gr, "Datos experimentales (#sigma = #sqrt{N})", "pe");
+	leg->AddEntry(fitFunc, "Ajuste Sigmoide (Modelo PMT)", "l");
+	leg->Draw();
 }
